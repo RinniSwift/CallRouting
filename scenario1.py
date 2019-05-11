@@ -12,18 +12,26 @@ class SolutionOne(object):
 		'''
 		route_costs_dict = {}  # O(1) time | O(1) space
 
+		try:
+			with open(self.file_name) as txt_file: # O(1) time | O(1) space
 
-		with open(self.file_name) as txt_file: # O(1) time | O(1) space
+				for line in txt_file: # O(n) time 
 
-			for line in txt_file: # O(n) time 
-				arr_per_line = line.split(",") # O(n) time | O(n) space
-				route_costs_dict[arr_per_line[0]] = arr_per_line[1][:-1] # O(1) time | O(1) space
+					arr_per_line = line.split(",") # O(n) time | O(n) space
+					if arr_per_line[0] in route_costs_dict:
+						
+						route_costs_dict[arr_per_line[0]].append(arr_per_line[1][:-1]) # O(1) time | O(1) space
+					else:
+						route_costs_dict[arr_per_line[0]] = [arr_per_line[1][:-1]] # O(1) time | O(1) space
+						
+		except IOError as error:
+			print("error {} found while opening file {}".format(error, self.file_name))
 
 		return route_costs_dict 
 
 
 
-	def search_number(self, number):
+	def find_cost(self, number):
 		''' look up number in dictionary of route-cost.
 
 			Time Complexity : O(n) worst case where n is the length of the number | O(1) best case if initial number is the route
@@ -31,21 +39,19 @@ class SolutionOne(object):
 		'''
 
 		all_route_costs = self.create_number_dictionary() # O(n) time | O(n) space 
-
+		
 		while len(number) > 1: # O(n-1) time worst case | O(1) time best case if initial number is the route
-
 			try: 
 				if all_route_costs[number] is not None: #O(1) time 
-					return all_route_costs[number] # O(1) time
+					costs = all_route_costs[number]
+					return min(costs)
 			except:
 				number = number[:-1] # O(1) time | O(n) space
 
-		return None
-
 
 def main():
-	solution = SolutionOne("route-costs-10000000.txt")
-	print(solution.search_number("+82231094982034"))
+	solution = SolutionOne("route-costs-106000.txt")
+	print(solution.find_cost("+13053909087"))
 
 
 
