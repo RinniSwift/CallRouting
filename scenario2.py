@@ -1,4 +1,4 @@
-class SolutionTwo(object):
+class SolutionOne(object):
 
 	def __init__(self, route_file, number_file):
 
@@ -74,10 +74,8 @@ class SolutionTwo(object):
 
 
 def main():
-	solution = SolutionTwo("route-costs-106000.txt", "phone-numbers-1000.txt")
+	solution = SolutionOne("route-costs-106000.txt", "phone-numbers-1000.txt")
 	print(solution.create_route_numbers_dict())
-
-
 
 
 
