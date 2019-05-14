@@ -66,7 +66,7 @@ class SolutionTwo(object):
 
 
 def main():
-	solution = SolutionTwo("route-costs-106000.txt", "phone-numbers-1000.txt")
+	solution = SolutionTwo("route-costs-106000.txt", "phone-numbers-100.txt")
 	print(solution.create_route_numbers_dict())
 
 

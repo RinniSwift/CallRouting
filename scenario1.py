@@ -44,8 +44,8 @@ class SolutionOne(object):
 
 
 def main():
-	solution = SolutionOne("route-costs-10000000.txt")
-	print(solution.search_number("+82231094982034"))
+	solution = SolutionOne("route-costs-106000.txt")
+	print(solution.search_number("+449275049"))
 
 
 
