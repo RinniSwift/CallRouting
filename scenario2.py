@@ -27,7 +27,7 @@ class SolutionOne(object):
 						route_costs_dict[arr_per_line[0]] = [arr_per_line[1][:-1]] # O(1) time | O(1) space
 						
 		except IOError as error:
-			print("error {} found while opening file {}".format(error, self.file_name))
+			print("error {} found while opening file {}".format(error, self.route_file))
 
 		return route_costs_dict 
 
