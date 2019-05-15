@@ -9,6 +9,7 @@ class SolutionOne(object):
 		self.phone_file = phone_file
 		self.carrier_file_array = carrier_file_array
 		self.all_route_dict = {}
+		self.create_route_dictionary()
 
 	def create_route_dictionary(self):
 		''' create a key-value pair for each route and its cost
@@ -24,15 +25,18 @@ class SolutionOne(object):
 				with open(file_name) as txt_file: # O(1) time | O(1) space
 					for line in txt_file: # O(n) time 
 
-						arr_per_line = line.split(",") # O(n) time | O(n) space
-						if arr_per_line[0] in self.all_route_dict:
-							self.all_route_dict[arr_per_line[0]].append(arr_per_line[1][:-1]) # O(1) time | O(1) space
+						route_number , price = line.split(",") # O(n) time | O(n) space
+
+						if route_number in self.all_route_dict:
+							if float(price) < self.all_route_dict[route_number]:
+
+								self.all_route_dict[route_number] = float(price) # O(1) time | O(1) space
 						else:
-							#print(arr_per_line[1])
-							self.all_route_dict[arr_per_line[0]] = [arr_per_line[1][:-1]] # O(1) time | O(1) space
+							self.all_route_dict[route_number] = float(price) # O(1) time | O(1) space
 							
 			except IOError as error:
 				print("error {} found while opening file {}".format(error, file_name))
+				
 
 
 	def find_cost(self, number):
@@ -41,11 +45,15 @@ class SolutionOne(object):
 			Time Complexity : O(n) worst case where n is the length of the number | O(1) best case if initial number is the route
 			Space Complexity : O(1) space
 		'''
+		
 		while len(number) > 1: # O(n-1) time worst case | O(1) time best case if initial number is the route
-			try: 
+			try:
+				print(number)
 				if self.all_route_dict[number] is not None: #O(1) time 
 					costs = self.all_route_dict[number]
-					return min(costs)
+
+					print(costs)
+					# return min(costs)
 					
 			except:
 				number = number[:-1] # O(1) time | O(n) space
@@ -78,7 +86,7 @@ class SolutionOne(object):
 		for num in numbers:
 			if num:
 
-				curr_min_cost = self.find_cost(num, self.all_route_dict)
+				curr_min_cost = self.find_cost(num)
 				num_cost_dict[num] = curr_min_cost
 
 		return num_cost_dict
@@ -86,10 +94,11 @@ class SolutionOne(object):
 	
 def main():
 	
-	arr_of_carriers = ["route-costs-10.txt", "route-costs-35000.txt", "route-costs-106000.txt", "route-costs-1000000.txt", "route-costs-10000000.txt"]
-	solution = SolutionOne("phone-numbers-10.txt", arr_of_carriers)
+	arr_of_carriers = ["route-costs-100.txt"]
+	solution = SolutionOne("phone-numbers-1000.txt", arr_of_carriers)
 
-	print(solution.create_route_numbers_dict())
+	solution.create_route_numbers_dict()
+	# solution.create_route_dictionary()
 
 
 
