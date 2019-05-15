@@ -77,19 +77,10 @@ class SolutionOne(object):
 
 		for num in numbers:
 			if num:
-				minimum_costs = []
-				for carrier_file in self.carrier_file_array:
-					
-					current_carrier_dict = self.create_route_dictionary(carrier_file)
-					curr_min_cost = self.find_cost(num, current_carrier_dict)
 
-					if curr_min_cost:
-						minimum_costs.append(curr_min_cost)
+				curr_min_cost = self.find_cost(num, self.all_route_dict)
+				num_cost_dict[num] = curr_min_cost
 
-				if len(minimum_costs) > 1:
-					num_cost_dict[num] = min(minimum_costs)
-					
-					
 		return num_cost_dict
 	
 	
