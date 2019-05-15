@@ -86,8 +86,7 @@ class SolutionOne(object):
 						minimum_costs.append(curr_min_cost)
 
 				if len(minimum_costs) > 1:
-					# num_cost_dict[num] = min(minimum_costs)
-					print(minimum_costs)
+					num_cost_dict[num] = min(minimum_costs)
 					
 					
 		return num_cost_dict
@@ -95,8 +94,8 @@ class SolutionOne(object):
 	
 def main():
 	
-	arr_of_carriers = ["dummy_1.txt", "dummy_2.txt"]
-	solution = SolutionOne("phone-numbers-10.txt", arr_of_carriers)
+	arr_of_carriers = ["route-costs-106000.txt", "route-costs-600.txt"]
+	solution = SolutionOne("phone-numbers-3.txt", arr_of_carriers)
 
 	print(solution.create_route_numbers_dict())
 
