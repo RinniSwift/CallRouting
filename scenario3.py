@@ -48,12 +48,11 @@ class SolutionOne(object):
 		
 		while len(number) > 1: # O(n-1) time worst case | O(1) time best case if initial number is the route
 			try:
-				print(number)
 				if self.all_route_dict[number] is not None: #O(1) time 
 					costs = self.all_route_dict[number]
 
-					print(costs)
-					# return min(costs)
+					# print(costs)
+					return costs
 					
 			except:
 				number = number[:-1] # O(1) time | O(n) space
@@ -87,17 +86,18 @@ class SolutionOne(object):
 			if num:
 
 				curr_min_cost = self.find_cost(num)
-				num_cost_dict[num] = curr_min_cost
+				if curr_min_cost:
+					num_cost_dict[num] = curr_min_cost
 
 		return num_cost_dict
 	
 	
 def main():
 	
-	arr_of_carriers = ["route-costs-100.txt"]
+	arr_of_carriers = ["route-costs-100.txt", "route-costs-35000.txt", "route-costs-106000.txt", "route-costs-10000000.txt"]
 	solution = SolutionOne("phone-numbers-1000.txt", arr_of_carriers)
 
-	solution.create_route_numbers_dict()
+	print(solution.create_route_numbers_dict())
 	# solution.create_route_dictionary()
 
 
