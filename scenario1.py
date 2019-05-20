@@ -1,4 +1,34 @@
+class SolutionTwo(object):
+	
+	def __init__(self, file_name):
+		self.file_name = file_name
+		self.route_arr = []
+	 
+	def create_num_array(self, number):
+		
+		
+		try:
+			with open(self.file_name) as txt_file: # O(1) time | O(1) space
 
+				for line in txt_file: # O(n) time 
+					arr_per_line = line.split(",")
+					self.route_arr.append(arr_per_line)
+		except IOError as error:
+			print("error {} found while opening file {}".format(error, self.file_name))				self.route_array.append(arr_per_line)
+					
+	def find_cost(self, number):
+		
+		counter = 0 
+		while len(number) > 1:
+			curr_arr = self.route_arr[counter]
+			if curr_arr[0] == number:
+				return curr_arr[1]
+			else:
+				number = number[:-1]
+			
+			counter += 1
+	
+	
 class SolutionOne(object):
 
 	def __init__(self, file_name):
